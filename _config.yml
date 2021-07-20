@@ -1,14 +1,14 @@
-title:              Clean Blog
-email:              your-email@example.com
-description:        A Blog Theme by Start Bootstrap
+title:              Data Kira
+email:              datakira7@gmail.com
+description:        Kyunghee Jung
 author:             Start Bootstrap
 baseurl:            "/"
 url:                "https://datakira.github.io"
 
 # Social Profiles
-twitter_username:   SBootstrap
-github_username:    StartBootstrap
-facebook_username:  StartBootstrap
+twitter_username:   
+github_username:    datakira
+facebook_username:  
 instagram_username:  
 linkedin_username:
 
