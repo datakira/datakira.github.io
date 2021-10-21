@@ -1,0 +1,45 @@
+---
+layout: post
+title: "About fundus image"
+subtitle: "Weekly report in Sungkyunkwan University"
+date: 2021-10-07 10:45:13 -0400
+background: '/img/posts/05.jpg'
+---
+
+<h2 class="section-heading">Fundus Image</h2>
+
+
+<p>안저사진(Fundus Image)은 의료데이터 중 하나로 동공을 통해 눈을 연속적으로 촬영한 사진이다. 의사들은 이 Fundus Image를 보고 직접 진단을 내려왔다. 만약 딥러닝으로 구현된 안저 질병 판독 모델이 의사를 도울 수 있다면 더 정확하고 신속한 판단을 내릴 것이라고 생각한다. 사진에서 관측 가능한 대표적인 부분으로는 Optic Disc(OD)와 fovea가 있다.</p>
+
+<p>이 두 부분의 위치를 자동으로 찾아내는 모델을 만드는 것은 녹내장, 당뇨병성 망막병증 등의 질병 판독 모델 제작에서 중요한 첫번째 단추이다. 많은 사람들이 이미지에서 OD와 fovea의 위치를 찾아내는 방법들을 제시해왔다. 그러나 이 문제는 일반적인 사진에서 강아지와 같은 일반적인 object를 찾는 것과는 다른 점이 있다. </p>
+
+<p>1) 하나의 Fundus Image 에 OD와 fovea는 무조건 각각 하나씩 존재한다.</p>
+<p>2) OD와 fovea의 위치는 상관관계가 있다. </p>
+<p>3) OD의 지름을 DD(Optic Disc diameter)라고 하면 OD와 fovea 사이의 수평 거리는 약 2.5DD이다. </p>
+
+<p>제약 사항으로 보이는 듯하지만 이 세 조건은 오히려 두 object를 찾아내는 과정에서 긍정적으로 활용될 수 있다. 두 object를 찾아내는 방법 중 하나를 소개한다. OD는 혈관이 모이는 밝은 영역에 있기 때문에 detect되기 쉽다. 이것을 먼저 Object Detection Network인 Faster R-CNN으로 찾은 다음, OD의 지름 데이터(DD)로 fovea의 대략적인 크기와 위치를 추측한다. Fovea가 있을 만한 면적에 대해서 동일한 모델로 fovea를 localize한다. 앞서 이미지 전체가 아닌 일부 면적으로 좁혀졌기 때문에 복잡성이 감소하고 정확도는 향상된다. 찾은 두 object를 이용해 이미지의 좌우방향성도 예측할 수 있다. OD가 fovea에 비해 오른쪽에 위치하면 오른쪽 눈이고, 왼쪽에 위치하면 왼쪽 눈이다. </p>
+
+<img class="img-fluid" src="/img/weekly/fundus.png" alt="Demo Image">
+
+
+
+<!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>-->
+
+<!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>-->
+
+<!--<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>-->
+
+<!--<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>-->
+
+<!--<h2 class="section-heading">Reaching for the Stars</h2>-->
+
+<!--<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>-->
+
+<!--<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">-->
+<!--<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>-->
+
+<!--<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>-->
+
+<!--<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>-->
+
+<!--<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>-->
