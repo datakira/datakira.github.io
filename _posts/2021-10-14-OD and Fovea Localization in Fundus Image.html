@@ -1,0 +1,45 @@
+---
+layout: post
+title: "OD and Fovea Localization in Fundus Image"
+subtitle: "Sungkyunkwan University, 21.10.14"
+date: 2021-10-14 10:45:13 -0400
+background: '/img/posts/06.jpg'
+---
+
+<h2 class="section-heading">Localization in Fundus Image</h2>
+
+<p>안저 사진을 보면 크게 눈에 띄는 것은 세가지 - Optic Disc, Fovea 그리고 Blood vessels이다. 이 연구에서 OD는 Localize된 영역이고 Fovea는 Localize된 점이다. 그에 따라 OD는 IoU (Intersection of Union)으로, Fovea는 유클리드 거리를 이용해서 평가한다. 일반적인 이미지에서의 Detection과 다르게 다음과 같은 두 가지의 제약조건이 존재한다.</p>
+
+<p>1) Fundus 이미지 하나에서 무조건 하나의 OD와 하나의 Fovea만 존재한다. (각 object개수 제한 존재)</p>
+
+<p>2) 안구의 물리적인 구조 때문에 OD와 Fovea는 공간적인 위치 제약이 존재한다. (공간적 제약 존재)</p>
+
+<p>이러한 제약조건은 오히려 두 objects가 서로 연관이 있음을 암시하며 localize하는 데에 도움을 준다. 이번주 발표에서 리뷰할 논문에서는 두 가지 방식을 제안한다. 첫번째, OD-guided Fovea Localization 은 상대적으로 찾기 쉬운 OD를 먼저 찾은 후에 Fovea가 있을 만한 위치를 한정하는 것이다. OD가 더 쉽게 찾아지는 이유는 색이 밝으며 혈관이 모이는 곳에 위치하기 때문이다. 그래서, Fovea는 OD의 중심을 기준으로 약 2.5DD (Optic Disc Diameter(DD)) 떨어져 있기 때문에 이것을 이용해 Fovea 가 있을 만한 후보 지역 두 개를 결정한다. 그러나 결론적으로 이 방법은 OD를 찾을 때와 Fovea를 찾을 때 각각 따로 모델을 사용함에 따라 복잡성이 높아진다. 그래서 두번째로 제안한 방식은 Spatially – Constrained Loss를 사용하는 것이다. 두 object 사이에는 거리 제약조건과 방향(각도) 제약조건이 존재한다. 이 두 특징을 각각 이용한 손실함수인 lossd와 lossθ 를 사용한 모델인 Faster R-CNN의 손실함수와 함께 이용하여 최종적으로 공간적으로 제약된 하나의 Losssc 손실함수를 생성한다.</p>
+
+<p>Losssc := lossfr + λ1 · lossd + λ2 · lossθ</p>
+
+<p>결론적으로 OD-guided Fovea Localization과 Spatially-Constrained Loss 둘 다 Fovea를 Localize하는 데에는 Fovea만 Localize하는 것보다 더 좋은 성능을 보였으나, OD를 Localize하는 것에 대해서는 두 방식 모두 OD만 Localize하는 것보다 좋지 않은 IoU를 보였다.</p>
+
+
+
+
+<!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>-->
+
+<!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>-->
+
+<!--<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>-->
+
+<!--<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>-->
+
+<!--<h2 class="section-heading">Reaching for the Stars</h2>-->
+
+<!--<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>-->
+
+<!--<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">-->
+<!--<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>-->
+
+<!--<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>-->
+
+<!--<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>-->
+
+<!--<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>-->
